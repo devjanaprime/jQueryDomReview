@@ -29,12 +29,34 @@ $( document ).ready( function(){
     theDiv.append( '<ul>' );
     // loop through the array and add each record
     for (var i = 0; i < jetsons.length; i++) {
+      // add a button with a myName attribute
+      // must be of class "showMe" to trigger the on click for that class
+      var buttonText = '<button class="showMe" myName="' + jetsons[i].name + '">Who Am I?</button>';
       // append each object in the array as a list item (li element)
-      theDiv.append( '<li>' + jetsons[i].name + ': ' + jetsons[i].role + '</li>' );
+      // with button text added
+      theDiv.append( '<li>' + jetsons[i].name + ': ' + jetsons[i].role + buttonText + '</li>' );
     }
     // close the ul element
     theDiv.append( '</ul>' );
   }); // end showArray on click
+
+  $( 'body' ).on( 'click', '.showMe', function(){
+    // on click for any element on the body with a class of "showMe"
+    // $( this ) is the element clicked
+    // the attribute we want to get is "myName"
+    // we'll use .attr( 'myName' ) on $this to get this attribute
+    console.log( 'user clicked:' + $( this ).attr( 'myName' ) );
+    // display in outputDiv
+    var theDiv = $( '#outputDiv' );
+    // empty the outputDiv
+    theDiv.empty();
+    // create a p tag that will hold our object's name:
+    var outputText = '<p>You clicked: ' + $( this ).attr( 'myName' ) + '</p>';
+    // append this p tag to the div
+    theDiv.append( outputText );
+    // next step... add p tag that displays exampleObject.status?
+  });
+
 });
 
 // single, lonely object
